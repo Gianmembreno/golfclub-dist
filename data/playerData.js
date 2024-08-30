@@ -22,9 +22,31 @@ const players = [
         }
     },
     {
-        id: 1,
+        id: 2,
         username: "juanpi",
         fullname: "Juanpablo Egas",
+        clubDistances: {
+            Driver: 10,
+            wood3: 0,
+            hybrid3: 0,
+            iron3: 0,
+            iron4: 0,
+            iron5: 0,
+            iron6: 0,
+            iron7: 0,
+            iron8: 0,
+            iron9: 0,
+            pitchingW: 0,
+            fifty2: 0,
+            fifty6: 0,
+            sixty: 0,
+            putter: 0
+        }
+    },
+    {
+        id: 3,
+        username: "Yayo",
+        fullname: "Gerardo Ramirez",
         clubDistances: {
             Driver: 10,
             wood3: 0,
