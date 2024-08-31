@@ -1,7 +1,10 @@
 body {
-  font-family: Arial, sans-serif;
-  background-color: #161010;
   margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  background-color: #b8b8b8; /* Set a light background color */
+  color: #212529; /* Set a default text color */
   padding: 20px;
 }
 

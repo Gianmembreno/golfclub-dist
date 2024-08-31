@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import players from "../../data/playerData";
+import "./LoginPopup.css";
 
-function LoginPopup({ onClose, onLoadProfile }) {
+function LoginPopup({ onClose, onLoadProfile, isLoggedIn }) {
   const [username, setUsername] = useState("");
 
   const handleSubmit = (event) => {
@@ -15,26 +16,41 @@ function LoginPopup({ onClose, onLoadProfile }) {
   };
 
   return (
-    <div className="popup">
-      <div className="popup-content">
-        <span className="close-button" onClick={onClose}>
-          &times;
-        </span>
-        <div className="form-container">
-          <h1 className="form-title">Player Profile</h1>
-          <form onSubmit={handleSubmit} className="form-inputs">
+    <div className="dialog-overlay" onClick={onClose}>
+      <div className="dialog-content" onClick={(e) => e.stopPropagation()}>
+        <div className="dialog-header">
+          <h2 className="dialog-title">
+            {isLoggedIn ? "Switch Account" : "Welcome back!"}
+          </h2>
+          <p className="dialog-description">
+            {isLoggedIn
+              ? "Enter the account name to switch."
+              : "Enter your account name to login."}
+          </p>
+          <span className="close-button" onClick={onClose}>
+            &times;
+          </span>
+        </div>
+        <form onSubmit={handleSubmit} className="dialog-body">
+          <div className="form-group">
+            <label htmlFor="username" className="form-label">
+              Account Name
+            </label>
             <input
-              className="input-field"
-              placeholder="Enter username"
+              id="username"
+              className="form-input"
+              placeholder="Enter your account name"
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
-            <button className="load-button" type="submit">
-              Load Profile
+          </div>
+          <div className="dialog-footer">
+            <button type="submit" className="submit-button">
+              {isLoggedIn ? "Switch Account" : "Login"}
             </button>
-          </form>
-        </div>
+          </div>
+        </form>
       </div>
     </div>
   );

@@ -1,12 +1,17 @@
 import React, { useState } from "react";
-import { FaLock } from "react-icons/fa";
-import Popup from "./comps/LoginPopup";
+import { FaUserCircle } from "react-icons/fa";
+import LoginPopup from "./comps/LoginPopup";
 import PlayerProfile from "./comps/PlayerProfile";
+import LandingPage from "./comps/LandingPage";
+import DataAnalytics from "./comps/DataAnalytics";
+import SwingThoughts from "./comps/SwingThoughts";
 import "./styles.css";
 
 function App() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [player, setPlayer] = useState(null);
+  const [selectedComponent, setSelectedComponent] = useState(null);
+  const [pendingComponent, setPendingComponent] = useState(null);
 
   const handleOpenPopup = () => {
     setIsPopupOpen(true);
@@ -19,18 +24,46 @@ function App() {
   const handleLoadProfile = (playerData) => {
     setPlayer(playerData);
     setIsPopupOpen(false);
+    if (pendingComponent) {
+      setSelectedComponent(pendingComponent);
+      setPendingComponent(null);
+    }
+  };
+
+  const handleOptionClick = (component) => {
+    if (!player) {
+      setPendingComponent(component);
+      setIsPopupOpen(true);
+    } else {
+      setSelectedComponent(component);
+    }
   };
 
   return (
     <div className="container">
-      <h1>Golf Player Profile</h1>
-      <button className="login-button" onClick={handleOpenPopup}>
-        <FaLock />
-      </button>
-      {isPopupOpen && (
-        <Popup onClose={handleClosePopup} onLoadProfile={handleLoadProfile} />
+      {!player ? (
+        <LandingPage onOptionClick={handleOptionClick} />
+      ) : (
+        <>
+          <div className="section-header">
+            <button className="login-button" onClick={handleOpenPopup}>
+              <FaUserCircle size={32} />
+            </button>
+          </div>
+          {selectedComponent === "DataAnalytics" && <DataAnalytics />}
+          {selectedComponent === "SwingThoughts" && <SwingThoughts />}
+          {player && selectedComponent === "WITB" && (
+            <PlayerProfile player={player} />
+          )}
+        </>
       )}
-      {player && <PlayerProfile player={player} />}
+      {isPopupOpen && (
+        <LoginPopup
+          onClose={handleClosePopup}
+          onLoadProfile={handleLoadProfile}
+          isLoggedIn={!!player}
+        />
+      )}
     </div>
   );
 }
