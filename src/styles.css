@@ -145,12 +145,12 @@ th {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
-  background-color: #343a40; /* Darker background for the header */
+  background-color: #343a40;
   padding: 10px 20px;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   position: relative;
-  overflow: hidden; /* Ensure content stays within the header */
+  overflow: hidden;
 }
 
 .section-title {
@@ -164,9 +164,9 @@ th {
   margin: 0 10px;
   font-size: 24px;
   font-weight: bold;
-  color: #fff; /* White text color */
+  color: #fff;
   transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-  white-space: nowrap; /* Prevent text from wrapping */
+  white-space: nowrap;
 }
 
 .arrow-button {
@@ -177,8 +177,8 @@ th {
   padding: 10px;
   border-radius: 50%;
   transition: background-color 0.3s ease;
-  color: #fff; /* White arrow color */
-  z-index: 1; /* Ensure arrows are above the text */
+  color: #fff;
+  z-index: 1;
 }
 
 .arrow-button:hover {
@@ -189,7 +189,7 @@ th {
   background: none;
   border: none;
   cursor: pointer;
-  color: #fff; /* White icon color */
+  color: #fff;
 }
 
 .title.next {

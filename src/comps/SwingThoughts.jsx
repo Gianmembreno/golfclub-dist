@@ -1,42 +1,52 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import NoteContainer from "./NoteContainer";
+import Sidebar from "./Sidebar";
 import "./SwingThoughts.css";
 
 function SwingThoughts() {
-  const [notes, setNotes] = useState([]);
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [newNote, setNewNote] = useState("");
+  const [notes, setNotes] = useState(
+    JSON.parse(localStorage.getItem("swing-thoughts-notes")) || []
+  );
 
-  const handleAddNote = () => {
-    setNotes([...notes, newNote]);
-    setNewNote("");
-    setIsPopupOpen(false);
+  const addNote = (color) => {
+    const tempNotes = [...notes];
+    tempNotes.push({
+      id: Date.now() + "" + Math.floor(Math.random() * 78),
+      text: "",
+      time: Date.now(),
+      color,
+    });
+    setNotes(tempNotes);
   };
 
+  const deleteNote = (id) => {
+    const tempNotes = [...notes];
+    const index = tempNotes.findIndex((item) => item.id === id);
+    if (index < 0) return;
+    tempNotes.splice(index, 1);
+    setNotes(tempNotes);
+  };
+
+  const updateText = (text, id) => {
+    const tempNotes = [...notes];
+    const index = tempNotes.findIndex((item) => item.id === id);
+    if (index < 0) return;
+    tempNotes[index].text = text;
+    setNotes(tempNotes);
+  };
+
+  useEffect(() => {
+    localStorage.setItem("swing-thoughts-notes", JSON.stringify(notes));
+  }, [notes]);
+
   return (
-    <div className="swing-thoughts-container">
-      <div className="notes-grid">
-        {notes.map((note, index) => (
-          <div key={index} className="note">
-            {note}
-          </div>
-        ))}
-        <div className="add-note" onClick={() => setIsPopupOpen(true)}>
-          <span>+</span>
-        </div>
-      </div>
-      {isPopupOpen && (
-        <div className="popup-overlay" onClick={() => setIsPopupOpen(false)}>
-          <div className="popup-content" onClick={(e) => e.stopPropagation()}>
-            <h2>Add a new note</h2>
-            <textarea
-              value={newNote}
-              onChange={(e) => setNewNote(e.target.value)}
-              placeholder="Enter your note here..."
-            />
-            <button onClick={handleAddNote}>Add Note</button>
-          </div>
-        </div>
-      )}
+    <div className="swing-thoughts">
+      <Sidebar addNote={addNote} />
+      <NoteContainer
+        notes={notes}
+        deleteNote={deleteNote}
+        updateText={updateText}
+      />
     </div>
   );
 }
