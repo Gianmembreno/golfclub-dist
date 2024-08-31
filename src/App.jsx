@@ -1,35 +1,38 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from "react";
+import { FaLock } from "react-icons/fa";
+import Popup from "./comps/LoginPopup";
+import PlayerProfile from "./comps/PlayerProfile";
+import "./styles.css";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [player, setPlayer] = useState(null);
+
+  const handleOpenPopup = () => {
+    setIsPopupOpen(true);
+  };
+
+  const handleClosePopup = () => {
+    setIsPopupOpen(false);
+  };
+
+  const handleLoadProfile = (playerData) => {
+    setPlayer(playerData);
+    setIsPopupOpen(false);
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="container">
+      <h1>Golf Player Profile</h1>
+      <button className="login-button" onClick={handleOpenPopup}>
+        <FaLock />
+      </button>
+      {isPopupOpen && (
+        <Popup onClose={handleClosePopup} onLoadProfile={handleLoadProfile} />
+      )}
+      {player && <PlayerProfile player={player} />}
+    </div>
+  );
 }
 
-export default App
+export default App;
