@@ -5,6 +5,8 @@ import PlayerProfile from "./comps/PlayerProfile";
 import LandingPage from "./comps/LandingPage";
 import DataAnalytics from "./comps/DataAnalytics";
 import SwingThoughts from "./comps/SwingThoughts";
+import RoundCollection from "./comps/RoundCollection";
+import Header from "./comps/Header";
 import "./styles.css";
 
 function App() {
@@ -12,6 +14,7 @@ function App() {
   const [player, setPlayer] = useState(null);
   const [selectedComponent, setSelectedComponent] = useState(null);
   const [pendingComponent, setPendingComponent] = useState(null);
+  const [animationDirection, setAnimationDirection] = useState("");
 
   const handleOpenPopup = () => {
     setIsPopupOpen(true);
@@ -39,18 +42,38 @@ function App() {
     }
   };
 
+  const handleNavigate = (direction) => {
+    const components = [
+      "DataAnalytics",
+      "RoundCollection",
+      "WITB",
+      "SwingThoughts",
+    ];
+    const currentIndex = components.indexOf(selectedComponent);
+    const nextIndex =
+      direction === "next"
+        ? (currentIndex + 1) % components.length
+        : (currentIndex - 1 + components.length) % components.length;
+    setAnimationDirection(direction);
+    setSelectedComponent(components[nextIndex]);
+  };
+
   return (
     <div className="container">
+      {player && selectedComponent && (
+        <Header
+          selectedComponent={selectedComponent}
+          animationDirection={animationDirection}
+          handleNavigate={handleNavigate}
+          handleOpenPopup={handleOpenPopup}
+        />
+      )}
       {!player ? (
         <LandingPage onOptionClick={handleOptionClick} />
       ) : (
         <>
-          <div className="section-header">
-            <button className="login-button" onClick={handleOpenPopup}>
-              <FaUserCircle size={32} />
-            </button>
-          </div>
           {selectedComponent === "DataAnalytics" && <DataAnalytics />}
+          {selectedComponent === "RoundCollection" && <RoundCollection />}
           {selectedComponent === "SwingThoughts" && <SwingThoughts />}
           {player && selectedComponent === "WITB" && (
             <PlayerProfile player={player} />
