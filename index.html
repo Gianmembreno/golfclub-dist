@@ -5,45 +5,12 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Golf Player Profile</title>
-    <link rel="stylesheet" href="src/styles.css" />
+    <!-- Directly reference the CSS file -->
+    <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
-    <div class="container">
-      <h1>Golf Player Profile</h1>
-
-      <!-- Form to enter the username -->
-      <form id="playerForm">
-        <label for="usernameInput">Enter Username:</label>
-        <input
-          type="text"
-          id="usernameInput"
-          placeholder="Enter your username"
-        />
-        <button type="submit">Load Profile</button>
-      </form>
-
-      <div id="playerInfo" class="player-info" style="display: none">
-        <p><strong>Username:</strong> <span id="username"></span></p>
-        <p><strong>Full Name:</strong> <span id="fullname"></span></p>
-      </div>
-
-      <h2>Club Distances</h2>
-      <table id="clubDistancesTable">
-        <thead>
-          <tr>
-            <th>Club</th>
-            <th>Distance (yards)</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- Club distances will be populated here -->
-        </tbody>
-      </table>
-    </div>
-    <script type="module" src="/src/script.js"></script>
-  </body>
-  <!-- <body>
     <div id="root"></div>
+    <!-- Directly reference the JS file -->
     <script type="module" src="/src/main.jsx"></script>
-  </body> -->
+  </body>
 </html>

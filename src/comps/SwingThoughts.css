@@ -1,0 +1,92 @@
+.swing-thoughts {
+  display: flex;
+  height: 100vh;
+  align-items: flex-start;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 20px;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.sidebar img {
+  width: 60px;
+  cursor: pointer;
+}
+
+.sidebar_list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  height: 0;
+  transition: 300ms;
+}
+
+.sidebar_list_active {
+  height: 300px;
+}
+
+.sidebar_list_item {
+  border-radius: 50%;
+  height: 24px;
+  width: 24px;
+  list-style: none;
+  margin-left: -37px;
+}
+
+.note-container {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.note-container h2 {
+  margin-bottom: 20px;
+}
+
+.note-container_notes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.note {
+  padding: 25px;
+  height: 150px;
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  background-color: blueviolet;
+  border-radius: 30px;
+}
+
+.note_text {
+  flex: 1;
+  resize: none;
+  background-color: transparent;
+  font-size: 1rem;
+  line-height: 1.875rem;
+  outline: none;
+  border: none;
+}
+
+.note_footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.note_footer img {
+  cursor: pointer;
+  opacity: 0;
+  transition: 300ms;
+}
+
+.note:hover .note_footer img {
+  opacity: 1;
+}

@@ -1,0 +1,96 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  background-color: #343a40; /* Darker background for the header */
+  padding: 10px 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden; /* Ensure content stays within the header */
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  position: relative;
+  flex: 1;
+  justify-content: center; /* Center the title */
+}
+
+.section-title h1 {
+  margin: 0 20px; /* Add more space between the arrows and the title */
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff; /* White text color */
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  white-space: nowrap; /* Prevent text from wrapping */
+}
+
+.arrow-button {
+  background: none;
+  border: none;
+  font-size: 32px; /* Increase the size of the arrows */
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+  color: #fff; /* White arrow color */
+  z-index: 1; /* Ensure arrows are above the text */
+  width: 50px; /* Fixed width for the button */
+  height: 50px; /* Fixed height for the button */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute; /* Fix the position of the arrows */
+}
+
+.arrow-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.arrow-button.left {
+  left: 10px; /* Move the left arrow further left */
+}
+
+.arrow-button.right {
+  right: 10px; /* Move the right arrow further right */
+}
+
+.login-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #fff; /* White icon color */
+}
+
+.title.slide-in-right {
+  animation: slideInFromRight 0.3s forwards;
+}
+
+.title.slide-in-left {
+  animation: slideInFromLeft 0.3s forwards;
+}
+
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
